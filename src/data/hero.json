@@ -1,0 +1,89 @@
+{
+  "brand": "Beroxv Tomorrow",
+  "eyebrow": "Good things start with a hello",
+  "headline": "let's automate\nthe manual work.",
+  "description": "Automation, AI agents and internal tools for teams\nburied in manual work. Tell me what's slowing you down.",
+  "serviceTitle": "What are you trying to automate?",
+  "serviceHelp": "Select all that apply",
+  "serviceOptions": [
+    "Document processing",
+    "AI agents",
+    "Workflow automation",
+    "Internal apps"
+  ],
+  "navLinks": [
+    {
+      "label": "Qualifications",
+      "panel": "qualifications"
+    },
+    {
+      "label": "Experience",
+      "panel": "experience"
+    },
+    {
+      "label": "Skills",
+      "panel": "skills"
+    },
+    {
+      "label": "Projects",
+      "href": "#projects"
+    },
+    {
+      "label": "Contact",
+      "panel": "contact"
+    }
+  ],
+  "featureCards": [
+    {
+      "id": "automate",
+      "icon": "chart",
+      "lines": [
+        "Automate",
+        "repetitive work"
+      ],
+      "service": "Workflow automation",
+      "label": "Select workflow automation",
+      "depth": 8
+    },
+    {
+      "id": "ideas",
+      "icon": "bulb",
+      "lines": [
+        "Turn ideas",
+        "into solutions"
+      ],
+      "service": "AI agents",
+      "label": "Select AI agents",
+      "depth": 12
+    },
+    {
+      "id": "together",
+      "icon": "people",
+      "lines": [
+        "Better",
+        "together"
+      ],
+      "service": "Internal apps",
+      "label": "Select internal apps",
+      "depth": 6
+    }
+  ],
+  "dialogs": {
+    "qualifications": {
+      "kicker": "Qualifications",
+      "title": "Where the groundwork\nwas laid."
+    },
+    "experience": {
+      "kicker": "Experience",
+      "title": "What I've built,\nand who for."
+    },
+    "skills": {
+      "kicker": "Skills",
+      "title": "The tools I reach\nfor most."
+    },
+    "contact": {
+      "kicker": "Let's talk",
+      "title": "Every good thing starts\nwith a conversation."
+    }
+  }
+}

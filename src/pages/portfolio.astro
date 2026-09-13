@@ -1,0 +1,62 @@
+---
+// The tabbed portfolio. Each panel pulls its content from src/data — to change
+// what the site says, edit the JSON, not this file.
+import Base from "../layouts/Base.astro";
+import Panel from "../components/Panel.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import Hero from "../components/Hero.astro";
+import Timeline from "../components/Timeline.astro";
+import CertList from "../components/CertList.astro";
+import ExperienceCard from "../components/ExperienceCard.astro";
+import SkillCluster from "../components/SkillCluster.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import ContactForm from "../components/ContactForm.astro";
+
+import site from "../data/site.json";
+import qualifications from "../data/qualifications.json";
+import experience from "../data/experience.json";
+import skills from "../data/skills.json";
+import projects from "../data/projects.json";
+---
+
+<Base>
+  <Panel id="home" active>
+    <Hero />
+  </Panel>
+
+  <Panel id="qualifications">
+    <SectionHeader title="Qualifications" lede={qualifications.lede} />
+
+    <h3 class="group-title">Education</h3>
+    <Timeline entries={qualifications.education} />
+
+    <h3 class="group-title">Certifications</h3>
+    <CertList certs={qualifications.certifications} />
+  </Panel>
+
+  <Panel id="work">
+    <SectionHeader title="Experience" lede={experience.lede} />
+    <ul class="card-list">
+      {experience.roles.map((role) => <ExperienceCard {...role} />)}
+    </ul>
+  </Panel>
+
+  <Panel id="skills">
+    <SectionHeader title="Skills" lede={skills.lede} />
+    <div class="skill-clusters">
+      {skills.clusters.map((cluster) => <SkillCluster {...cluster} />)}
+    </div>
+  </Panel>
+
+  <Panel id="projects">
+    <SectionHeader title="Projects" lede={projects.lede} />
+    <ul class="project-grid">
+      {projects.items.map((project) => <ProjectCard {...project} />)}
+    </ul>
+  </Panel>
+
+  <Panel id="contact">
+    <SectionHeader title="Contact" lede={site.contact.lede} />
+    <ContactForm />
+  </Panel>
+</Base>

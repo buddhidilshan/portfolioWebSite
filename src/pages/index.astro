@@ -1,62 +1,403 @@
 ---
-// The one screen. Each panel pulls its content from src/data — to change what
-// the site says, edit the JSON, not this file.
-import Base from "../layouts/Base.astro";
-import Panel from "../components/Panel.astro";
-import SectionHeader from "../components/SectionHeader.astro";
-import Hero from "../components/Hero.astro";
-import Timeline from "../components/Timeline.astro";
-import CertList from "../components/CertList.astro";
-import ExperienceCard from "../components/ExperienceCard.astro";
-import SkillCluster from "../components/SkillCluster.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import ContactForm from "../components/ContactForm.astro";
-
-import site from "../data/site.json";
+import Icon from "../components/Icon.astro";
+import hero from "../data/hero.json";
 import qualifications from "../data/qualifications.json";
 import experience from "../data/experience.json";
 import skills from "../data/skills.json";
 import projects from "../data/projects.json";
+import "../styles/hero.css";
+import "../styles/work.css";
 ---
 
-<Base>
-  <Panel id="home" active>
-    <Hero />
-  </Panel>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beroxv Tomorrow — Buddhi Dilshan</title>
+    <meta
+      name="description"
+      content="Automation, AI agents and internal tools by Buddhi Dilshan."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <Panel id="qualifications">
-    <SectionHeader title="Qualifications" lede={qualifications.lede} />
+  <body>
+    <div class="hero-root" data-motion="on">
+      <div class="content-group">
+        <header>
+          <nav class="hero-nav" aria-label="Primary">
+            <a class="hero-wordmark" href="/">
+              {hero.brand}<span class="asterisk" aria-hidden="true">✳</span>
+            </a>
 
-    <h3 class="group-title">Education</h3>
-    <Timeline entries={qualifications.education} />
+            <div class="hero-nav-links">
+              {
+                hero.navLinks.map((link, i) => (
+                  <>
+                    {i > 0 && <span class="sep" aria-hidden="true">,</span>}
+                    {link.panel
+                      ? <button type="button" data-panel={link.panel}>{link.label}</button>
+                      : <a href={link.href}>{link.label}</a>}
+                  </>
+                ))
+              }
+            </div>
 
-    <h3 class="group-title">Certifications</h3>
-    <CertList certs={qualifications.certifications} />
-  </Panel>
+            <button
+              type="button"
+              class="nav-toggle"
+              aria-label="Open menu"
+              aria-expanded="false"
+              aria-controls="mobile-navigation"
+            >
+              <span></span><span></span><span></span>
+            </button>
+          </nav>
+        </header>
 
-  <Panel id="work">
-    <SectionHeader title="Experience" lede={experience.lede} />
-    <ul class="card-list">
-      {experience.roles.map((role) => <ExperienceCard {...role} />)}
-    </ul>
-  </Panel>
+        <div class="mobile-nav" id="mobile-navigation" data-open="false" aria-hidden="true">
+          <nav aria-label="Mobile navigation">
+            {
+              hero.navLinks.map((link, i) => (
+                link.panel
+                  ? <button type="button" class="mobile-link" data-panel={link.panel}>
+                      {link.label}<span class="mobile-index">0{i + 1}</span>
+                    </button>
+                  : <a href={link.href}>
+                      {link.label}<span class="mobile-index">0{i + 1}</span>
+                    </a>
+              ))
+            }
+          </nav>
+        </div>
 
-  <Panel id="skills">
-    <SectionHeader title="Skills" lede={skills.lede} />
-    <div class="skill-clusters">
-      {skills.clusters.map((cluster) => <SkillCluster {...cluster} />)}
+        <main class="hero-main">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span>{hero.eyebrow}</p>
+
+            <h1 aria-label={hero.headline}>
+              <span class="typewriter-measure" aria-hidden="true">{hero.headline}</span>
+              <span class="typewriter-line" aria-hidden="true"></span><span
+                class="typewriter-caret"
+                aria-hidden="true"
+                hidden></span>
+            </h1>
+
+            <p class="hero-description">{hero.description}</p>
+
+            <section aria-labelledby="service-title">
+              <h2 id="service-title">{hero.serviceTitle}</h2>
+              <p class="service-help" id="service-help">{hero.serviceHelp}</p>
+
+              <div
+                class="service-pills"
+                role="group"
+                aria-labelledby="service-title"
+                aria-describedby="service-help"
+              >
+                {
+                  hero.serviceOptions.map((service) => (
+                    <button
+                      type="button"
+                      class="service-pill"
+                      data-pill={service}
+                      aria-pressed="false"
+                    >
+                      <span class="pill-check"><Icon name="check" size={17} /></span>
+                      {service}
+                    </button>
+                  ))
+                }
+              </div>
+
+              <div class="service-feedback" role="status" aria-live="polite" aria-atomic="true">
+                <p class="empty-feedback">Please click to select an area above.</p>
+
+                <div class="feedback-banner-wrap" hidden>
+                  <div class="feedback-banner">
+                    <span class="feedback-check"><Icon name="check" size={18} /></span>
+                    <p>Ready to talk about: <strong class="feedback-services"></strong></p>
+                    <button type="button" class="feedback-cta" data-panel="contact">
+                      Let's Go <Icon name="arrowRight" size={17} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <aside class="art-stage" aria-label="Interactive portrait">
+        <div
+          class="portrait-plane"
+          role="img"
+          aria-label="Buddhi at a laptop. The portrait gently follows your cursor."
+        >
+          <img class="portrait-image" src="/assets/portrait.webp" alt="" draggable="false" />
+          <canvas class="portrait-canvas" data-src="/assets/portrait.webp" aria-hidden="true"
+          ></canvas>
+        </div>
+
+        <div class="feature-cards">
+          {
+            hero.featureCards.map((card) => (
+              <div class={`feature-position feature-${card.id}`} data-depth={card.depth}>
+                <button
+                  type="button"
+                  class="feature-card"
+                  data-feature={card.id}
+                  data-service={card.service}
+                  aria-label={card.label}
+                  aria-pressed="false"
+                >
+                  <Icon name={card.icon} class="feature-icon" size={28} />
+                  <span>{card.lines[0]}<br />{card.lines[1]}</span>
+                  <Icon name="arrowUpRight" class="feature-arrow" size={14} />
+                </button>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="portrait-hint">
+          <Icon name="pointer" size={13} />
+          <span class="desktop-hint">Move your cursor. A little hello goes a long way.</span>
+          <span class="touch-hint">A little motion. A little personality.</span>
+        </div>
+      </aside>
+
+      <!-- ============ Nav dialogs ============ -->
+
+      <dialog class="hero-dialog" data-panel="qualifications" aria-labelledby="dlg-qual">
+        <div class="dialog-body">
+          <div class="dialog-head">
+            <span class="dialog-kicker">{hero.dialogs.qualifications.kicker}</span>
+            <button type="button" class="dialog-close" aria-label="Close">
+              <Icon name="close" size={21} />
+            </button>
+          </div>
+          <h2 id="dlg-qual">{hero.dialogs.qualifications.title}</h2>
+          <p class="dialog-lede">{qualifications.lede}</p>
+
+          <p class="dialog-group">Education</p>
+          {
+            qualifications.education.map((entry) => (
+              <div class="dialog-entry">
+                <span class="dialog-entry-dates">{entry.dates}</span>
+                <h3>{entry.title}</h3>
+                <p class="dialog-entry-org">{entry.org}</p>
+                {entry.note && <p>{entry.note}</p>}
+              </div>
+            ))
+          }
+
+          <p class="dialog-group">Certifications</p>
+          {
+            qualifications.certifications.map((cert) => (
+              <div class="dialog-entry">
+                <h3>{cert.name}</h3>
+                <p class="dialog-entry-org">{cert.issuer} · {cert.year}</p>
+              </div>
+            ))
+          }
+        </div>
+      </dialog>
+
+      <dialog class="hero-dialog" data-panel="experience" aria-labelledby="dlg-exp">
+        <div class="dialog-body">
+          <div class="dialog-head">
+            <span class="dialog-kicker">{hero.dialogs.experience.kicker}</span>
+            <button type="button" class="dialog-close" aria-label="Close">
+              <Icon name="close" size={21} />
+            </button>
+          </div>
+          <h2 id="dlg-exp">{hero.dialogs.experience.title}</h2>
+          <p class="dialog-lede">{experience.lede}</p>
+          {
+            experience.roles.map((role) => (
+              <div class="dialog-entry">
+                <span class="dialog-entry-dates">{role.dates}</span>
+                <h3>{role.title}</h3>
+                <p class="dialog-entry-org">{role.org}</p>
+                <ul class="dialog-bullets">
+                  {role.bullets.map((bullet) => <li>{bullet}</li>)}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </dialog>
+
+      <dialog class="hero-dialog" data-panel="skills" aria-labelledby="dlg-skills">
+        <div class="dialog-body">
+          <div class="dialog-head">
+            <span class="dialog-kicker">{hero.dialogs.skills.kicker}</span>
+            <button type="button" class="dialog-close" aria-label="Close">
+              <Icon name="close" size={21} />
+            </button>
+          </div>
+          <h2 id="dlg-skills">{hero.dialogs.skills.title}</h2>
+          <p class="dialog-lede">{skills.lede}</p>
+          {
+            skills.clusters.map((cluster) => (
+              <>
+                <p class="dialog-group">{cluster.title}</p>
+                <ul class="dialog-chips">
+                  {cluster.items.map((item) => <li>{item}</li>)}
+                </ul>
+              </>
+            ))
+          }
+        </div>
+      </dialog>
+
+      <dialog class="hero-dialog" data-panel="contact" aria-labelledby="dlg-contact">
+        <div class="dialog-body">
+          <div class="dialog-head">
+            <span class="dialog-kicker">{hero.dialogs.contact.kicker}</span>
+            <button type="button" class="dialog-close" aria-label="Close">
+              <Icon name="close" size={21} />
+            </button>
+          </div>
+          <h2 id="dlg-contact">{hero.dialogs.contact.title}</h2>
+          <p class="dialog-lede">Tell me a little about what you have in mind.</p>
+
+          <form class="contact-form-dialog">
+            <label class="dialog-field">
+              Your name
+              <input
+                class="contact-field"
+                name="name"
+                autocomplete="name"
+                placeholder="Alex Morgan"
+                required
+                maxlength="120"
+              />
+            </label>
+            <label class="dialog-field">
+              Email address
+              <input
+                class="contact-field"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="alex@company.com"
+                required
+                maxlength="254"
+              />
+            </label>
+            <label class="dialog-field">
+              A little about your project
+              <textarea
+                class="contact-field"
+                name="message"
+                rows="3"
+                placeholder="The big idea, the small details, or just a hello…"
+                required
+                maxlength="5000"></textarea>
+            </label>
+
+            <div class="dialog-actions">
+              <button type="submit" class="dialog-btn dialog-btn-solid">
+                <Icon name="copy" size={16} /> Copy enquiry
+              </button>
+              <button type="button" class="dialog-btn dialog-btn-ghost" data-action="save-enquiry">
+                <Icon name="download" size={16} /> Save enquiry
+              </button>
+            </div>
+          </form>
+
+          <p class="dialog-notice" role="status" aria-live="polite"></p>
+          <p class="dialog-footnote">
+            Nothing is sent to a server yet — copy or save your enquiry and email it across.
+          </p>
+        </div>
+      </dialog>
     </div>
-  </Panel>
 
-  <Panel id="projects">
-    <SectionHeader title="Projects" lede={projects.lede} />
-    <ul class="project-grid">
-      {projects.items.map((project) => <ProjectCard {...project} />)}
-    </ul>
-  </Panel>
+    <!-- ============ Selected work ============ -->
+    <section class="selected-work" id="projects" aria-labelledby="work-title" tabindex="-1">
+      <div class="work-shell">
+        <div class="work-section-label" data-work-reveal="fade">
+          <span class="work-label"><span class="work-dot"></span>SELECTED WORK</span>
+          <span class="work-edition">
+            A FEW RECENT BUILDS <span aria-hidden="true">/</span> 01&ndash;0{projects.items.length}
+          </span>
+        </div>
 
-  <Panel id="contact">
-    <SectionHeader title="Contact" lede={site.contact.lede} />
-    <ContactForm />
-  </Panel>
-</Base>
+        <div class="work-intro">
+          <div>
+            <h2 id="work-title" class="work-heading" aria-label="Things I've built.">
+              {
+                ["Things", "I've", "built."].map((word, i) => (
+                  <>
+                    {i > 0 && " "}
+                    <span class={`work-word${i === 2 ? " work-word-accent" : ""}`} aria-hidden="true">
+                      <span class="work-word-inner" data-work-reveal="word" data-delay={i * 90}>
+                        {word}
+                      </span>
+                      {i === 2 && (
+                        <svg class="work-underline" viewBox="0 0 150 10" preserveAspectRatio="none" aria-hidden="true">
+                          <path d="M2 7Q65 0 148 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" pathLength="1" />
+                        </svg>
+                      )}
+                    </span>
+                  </>
+                ))
+              }
+            </h2>
+            <p class="work-description" data-work-reveal="fade" data-delay="180">{projects.lede}</p>
+          </div>
+
+          <p class="work-aside" data-work-reveal="fade" data-delay="240">
+            <span class="work-asterisk" aria-hidden="true">&#10033;</span>
+            <span set:html={projects.aside.replace("\n", "<br />")} />
+          </p>
+        </div>
+
+        <div class="work-grid">
+          {
+            projects.items.map((project, index) => (
+              <div class="project-reveal" data-work-reveal="card" data-delay={(index % 2) * 110}>
+                <article class="work-card" data-project={project.id} aria-labelledby={`${project.id}-title`}>
+                  <div class="work-card-glow" aria-hidden="true"></div>
+                  <div class="work-card-meta">
+                    <span class="work-icon"><Icon name={project.icon} size={23} /></span>
+                    <span class="work-kind">{project.kind}</span>
+                    <span class="work-number" aria-hidden="true">{project.number}</span>
+                  </div>
+                  <h3 id={`${project.id}-title`}>{project.name}</h3>
+                  <p class="work-card-description">{project.summary}</p>
+                  <ul class="work-tags" aria-label={`${project.name} technologies`}>
+                    {project.tags.map((tag, i) => <li style={`--tag-i:${i}`}>{tag}</li>)}
+                  </ul>
+                </article>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="work-bottom">
+          <p>
+            Have something in mind?
+            <button type="button" class="work-contact" data-panel="contact">
+              Let's build it together <Icon name="arrowRight" size={16} />
+            </button>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      import { initHero } from "../scripts/hero.js";
+      initHero(document.querySelector(".hero-root"));
+    </script>
+  </body>
+</html>

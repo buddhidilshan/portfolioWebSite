@@ -8,10 +8,10 @@ interface Props {
   name: string;
   summary: string;
   tags: string[];
-  links: Link[];
+  links?: Link[];
 }
 
-const { name, summary, tags, links } = Astro.props;
+const { name, summary, tags, links = [] } = Astro.props;
 ---
 
 <li class="project-card">

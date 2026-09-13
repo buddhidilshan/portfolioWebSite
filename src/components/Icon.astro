@@ -1,0 +1,46 @@
+---
+// Inline Lucide-style icons. Inlined rather than loaded from a package so the
+// page ships no icon dependency.
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 24, class: className } = Astro.props;
+
+const paths: Record<string, string> = {
+  chart: '<path d="M12 16v5"/><path d="M16 14v7"/><path d="M20 10v11"/><path d="M8 18v3"/><path d="M4 21v-5"/>',
+  bulb: '<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>',
+  people: '<path d="M18 21a8 8 0 0 0-12 0"/><circle cx="12" cy="11" r="4"/><circle cx="12" cy="12" r="10"/>',
+  arrowUpRight: '<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
+  arrowRight: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  check: '<path d="M20 6 9 17l-5-5"/>',
+  pointer: '<path d="M12.586 12.586 19 19"/><path d="M3.688 3.037a.497.497 0 0 0-.651.651l6.5 15.999a.501.501 0 0 0 .947-.062l1.569-6.083a2 2 0 0 1 1.448-1.479l6.124-1.579a.5.5 0 0 0 .063-.947z"/>',
+  pause: '<rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/>',
+  play: '<polygon points="6 3 20 12 6 21 6 3"/>',
+  close: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+  copy: '<rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>',
+  download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>',
+  document: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 12h5M8 16h3"/><path d="m15 14 .8 1.7 1.8.3-1.3 1.3.3 1.8-1.6-.9-1.6.9.3-1.8-1.3-1.3 1.8-.3Z"/>',
+  checklist: '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 10l1.3 1.3 2.7-3M9 16l1.3 1.3 2.7-3M15 10h1M15 16h1"/>',
+  workflow: '<rect x="2" y="3" width="7" height="6" rx="1.5"/><rect x="15" y="15" width="7" height="6" rx="1.5"/><path d="M9 6h5a4 4 0 0 1 4 4v5M15 12l3 3 3-3M5 9v9h7M9 15l3 3-3 3"/>',
+  browser: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M6 6.5h.01M9 6.5h.01M12 6.5h.01M10 12l-3 2.5 3 2.5M14 12l3 2.5-3 2.5"/>',
+  rotate: '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
+};
+---
+
+<svg
+  class={className}
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.65"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  set:html={paths[name] ?? ""}
+/>

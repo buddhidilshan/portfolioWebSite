@@ -1,29 +1,42 @@
 {
   "lede": "A few things I've built recently — described at a level that keeps client detail out of it.",
+  "aside": "Less manual.\nMore meaningful.",
   "items": [
     {
+      "id": "valuation-review",
+      "number": "01",
+      "kind": "AI & DOCUMENTS",
+      "icon": "document",
       "name": "Valuation Review Agent",
       "summary": "An AI pipeline that reads large scanned valuation reports and extracts the fields an auditor actually needs, chunking and re-assembling documents that are far too long for a single pass.",
-      "tags": ["Azure OpenAI", "Document Intelligence", "Python"],
-      "links": [{ "label": "Case study", "href": "#" }]
+      "tags": ["Azure OpenAI", "Document Intelligence", "Python"]
     },
     {
+      "id": "reporting-checklist",
+      "number": "02",
+      "kind": "GUIDED INTELLIGENCE",
+      "icon": "checklist",
       "name": "Financial Reporting Checklist Agent",
       "summary": "A guided compliance checklist that branches across for-profit, not-for-profit and special-purpose reporting frameworks, so reviewers only answer the questions that apply to them.",
-      "tags": ["Copilot Studio", "Dataverse", "Power Apps"],
-      "links": [{ "label": "Case study", "href": "#" }]
+      "tags": ["Copilot Studio", "Dataverse", "Power Apps"]
     },
     {
+      "id": "letter-generation",
+      "number": "03",
+      "kind": "WORKFLOW AUTOMATION",
+      "icon": "workflow",
       "name": "Letter Generation Pipeline",
       "summary": "An Alteryx and Python workflow that turns a data extract into hundreds of correctly populated Word letters, replacing a mail-merge process that used to take days.",
-      "tags": ["Alteryx", "Python", "Word automation"],
-      "links": [{ "label": "Case study", "href": "#" }]
+      "tags": ["Alteryx", "Python", "Word automation"]
     },
     {
+      "id": "this-portfolio",
+      "number": "04",
+      "kind": "INTERACTIVE EXPERIENCES",
+      "icon": "browser",
       "name": "This Portfolio",
-      "summary": "A statically built single-page site with tabbed navigation, hash routing and an animated pill indicator — Astro, plain CSS, no UI framework.",
-      "tags": ["Astro", "CSS", "TypeScript"],
-      "links": [{ "label": "Source", "href": "#" }]
+      "summary": "A single-page experience with a cursor-following portrait, animated service selection and a little personality. Built with Astro and plain CSS — no UI framework.",
+      "tags": ["Astro", "WebGL", "TypeScript"]
     }
   ]
 }
