@@ -1,0 +1,25 @@
+---
+interface Props {
+  logo: string;
+  title: string;
+  dates: string;
+  org: string;
+  bullets: string[];
+}
+
+const { logo, title, dates, org, bullets } = Astro.props;
+---
+
+<li class="card">
+  <div class="card-logo" aria-hidden="true">{logo}</div>
+  <div class="card-body">
+    <div class="card-heading">
+      <h3>{title}</h3>
+      <span class="card-dates">{dates}</span>
+    </div>
+    <p class="card-org">{org}</p>
+    <ul class="card-bullets">
+      {bullets.map((bullet) => <li>{bullet}</li>)}
+    </ul>
+  </div>
+</li>

@@ -1,0 +1,21 @@
+{
+  "lede": "Tools and technologies I reach for most often.",
+  "clusters": [
+    {
+      "title": "Power Platform",
+      "items": ["Power Apps", "Power Apps Code Apps", "Power Automate", "Power Automate Desktop", "Copilot Studio", "Dataverse"]
+    },
+    {
+      "title": "AI & Document Intelligence",
+      "items": ["Azure OpenAI", "Document Intelligence", "Prompt & pipeline design", "Map-reduce extraction", "Retrieval-augmented generation"]
+    },
+    {
+      "title": "Data & Cloud",
+      "items": ["Alteryx Designer", "Python", "SQL", "Azure Functions", "Azure Blob Storage", "SharePoint"]
+    },
+    {
+      "title": "Build & Practice",
+      "items": ["TypeScript", "React", "Git & GitHub", "Solution architecture", "Stakeholder workshops"]
+    }
+  ]
+}

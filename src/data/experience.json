@@ -1,0 +1,27 @@
+{
+  "lede": "Where I've worked, and roughly what I did while I was there.",
+  "roles": [
+    {
+      "logo": "IN",
+      "title": "Innovation & Automation Lead",
+      "dates": "20XX — Present",
+      "org": "Professional services firm · Auckland, NZ",
+      "bullets": [
+        "Lead a portfolio of roughly 30 AI, automation and app-development projects spanning tax, advisory, audit and firm-wide operations.",
+        "Build end-to-end solutions across Power Apps, Power Automate, Copilot Studio, Alteryx and Azure — from data extraction through to the user-facing app.",
+        "Design for non-technical users first: upload-and-run experiences that keep the pipeline, prompts and plumbing out of sight.",
+        "Partner with IT and senior stakeholders on architecture, licensing and rollout for each solution."
+      ]
+    },
+    {
+      "logo": "PR",
+      "title": "Previous role",
+      "dates": "20XX — 20XX",
+      "org": "Organisation · Location",
+      "bullets": [
+        "Replace these bullets with two or three things you actually shipped.",
+        "Lead with the outcome, then the technology."
+      ]
+    }
+  ]
+}

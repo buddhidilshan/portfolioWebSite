@@ -1,0 +1,26 @@
+---
+interface Cert {
+  name: string;
+  issuer: string;
+  year: string;
+}
+
+interface Props {
+  certs: Cert[];
+}
+
+const { certs } = Astro.props;
+---
+
+<ul class="cert-list">
+  {
+    certs.map((cert) => (
+      <li class="cert">
+        <span class="cert-name">{cert.name}</span>
+        <span class="cert-issuer">
+          {cert.issuer} · {cert.year}
+        </span>
+      </li>
+    ))
+  }
+</ul>

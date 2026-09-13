@@ -1,0 +1,26 @@
+---
+interface Link {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  name: string;
+  summary: string;
+  tags: string[];
+  links: Link[];
+}
+
+const { name, summary, tags, links } = Astro.props;
+---
+
+<li class="project-card">
+  <h3>{name}</h3>
+  <p>{summary}</p>
+  <ul class="tag-list">
+    {tags.map((tag) => <li class="tag">{tag}</li>)}
+  </ul>
+  <div class="project-links">
+    {links.map((link) => <a href={link.href} class="project-link">{link.label}</a>)}
+  </div>
+</li>

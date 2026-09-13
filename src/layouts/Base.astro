@@ -1,0 +1,57 @@
+---
+// The page shell: <head>, the sticky header, and the footer. Every screen in
+// src/pages renders inside this, so the header and footer exist exactly once.
+import site from "../data/site.json";
+import TabNav from "../components/TabNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import "../styles/index.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = site.title, description = site.description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="#home" data-tab-link="home">
+          <span class="brand-mark" aria-hidden="true">{site.initials}</span>
+          <span class="brand-name">{site.name}</span>
+        </a>
+
+        <TabNav tabs={site.tabs} />
+      </header>
+
+      <main id="main">
+        <slot />
+      </main>
+
+      <SiteFooter />
+    </div>
+
+    <script>
+      import "../scripts/tabs.js";
+    </script>
+  </body>
+</html>

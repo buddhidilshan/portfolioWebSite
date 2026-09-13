@@ -1,0 +1,90 @@
+/* ============================================================
+   Reset
+   ============================================================ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .brand-name, .tab, .btn, .eyebrow, .cert-issuer,
+.card-dates, .timeline-dates, .tag, .chip, .form-status, label {
+  font-family: var(--font-head);
+}
+
+h1, h2, h3, h4 {
+  margin: 0 0 0.4em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+p { margin: 0 0 1em; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+a {
+  color: inherit;
+  text-decoration-color: var(--hairline);
+  text-underline-offset: 3px;
+}
+
+a:hover { text-decoration-color: var(--accent); }
+
+img { max-width: 100%; display: block; }
+
+button { font: inherit; color: inherit; }
+
+/* ============================================================
+   Accessibility helpers
+   ============================================================ */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  background: var(--text);
+  color: var(--bg);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  z-index: 100;
+  transition: top 0.2s var(--ease);
+  font-family: var(--font-head);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   Layout shell
+   ============================================================ */
+.page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 72px) var(--gutter) 96px;
+}

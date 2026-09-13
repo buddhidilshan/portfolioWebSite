@@ -1,0 +1,26 @@
+/* ============================================================
+   Tokens
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  --bg: #E9EDEF;
+  --surface: #F4F6F7;
+  --text: #16233A;
+  --muted: #5B6C80;
+  --hairline: #C7D0D7;
+  --accent: #D8570B;
+  --accent-ink: #FFF6F0;
+
+  --font-head: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Newsreader", Georgia, serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --gutter: clamp(20px, 5vw, 64px);
+  --content-max: 880px;
+
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+}

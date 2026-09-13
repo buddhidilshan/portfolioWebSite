@@ -1,0 +1,26 @@
+---
+import site from "../data/site.json";
+---
+
+<div class="hero">
+  <p class="eyebrow">{site.eyebrow}</p>
+  <h1>{site.name}</h1>
+  <p class="hero-role">{site.role}</p>
+  <p class="hero-bio">{site.bio}</p>
+
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="#projects" data-tab-link="projects">View projects</a>
+    <a class="btn btn-ghost" href="#contact" data-tab-link="contact">Get in touch</a>
+  </div>
+
+  <dl class="hero-facts">
+    {
+      site.facts.map((fact) => (
+        <div class="fact">
+          <dt>{fact.label}</dt>
+          <dd set:html={fact.value} />
+        </div>
+      ))
+    }
+  </dl>
+</div>

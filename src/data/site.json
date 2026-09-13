@@ -1,0 +1,30 @@
+{
+  "name": "Buddhi Dilshan",
+  "initials": "BD",
+  "title": "Buddhi Dilshan — Portfolio",
+  "description": "Portfolio of Buddhi Dilshan — automation and AI solution builder working across Power Platform, Azure and Alteryx.",
+  "eyebrow": "Portfolio — 2026",
+  "role": "Automation & AI Solutions — Power Platform, Azure, Alteryx",
+  "bio": "I design and build internal tools that take slow, manual professional-services work and turn it into something people can run in a few clicks. Most of my work sits where document processing, AI and business workflow meet — hiding the technical machinery so finance, tax and audit teams just upload a file and get a result.",
+  "facts": [
+    { "label": "Based in", "value": "Auckland, New Zealand" },
+    { "label": "Focus", "value": "AI agents, automation & low-code apps" },
+    { "label": "Currently", "value": "Innovation & technology, professional services" }
+  ],
+  "tabs": [
+    { "id": "home", "label": "Home" },
+    { "id": "qualifications", "label": "Qualifications" },
+    { "id": "work", "label": "Experience" },
+    { "id": "skills", "label": "Skills" },
+    { "id": "projects", "label": "Projects" },
+    { "id": "contact", "label": "Contact" }
+  ],
+  "contact": {
+    "lede": "Happy to talk about roles, projects, or anything in between.",
+    "links": [
+      { "label": "you@example.com", "href": "mailto:you@example.com" },
+      { "label": "linkedin.com/in/your-handle", "href": "#" },
+      { "label": "github.com/your-handle", "href": "#" }
+    ]
+  }
+}

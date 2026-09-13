@@ -1,0 +1,122 @@
+/* ============================================================
+   Header + tab navigation
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: saturate(1.1);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  z-index: -1;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 18px var(--gutter) 6px;
+  text-decoration: none;
+  width: 100%;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+
+.tabnav {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  /* Edge fades, switched on by JS only when tabs are hidden past that
+     edge. Both stops sit flush by default, so the mask is a no-op. */
+  --mask-start: #000 0;
+  --mask-end: #000 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, var(--mask-start), var(--mask-end), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, var(--mask-start), var(--mask-end), transparent 100%);
+}
+
+.tabnav.fade-start { --mask-start: #000 44px; }
+.tabnav.fade-end { --mask-end: #000 calc(100% - 44px); }
+
+.tabnav::-webkit-scrollbar { display: none; }
+
+.tabnav-track {
+  position: relative;
+  display: inline-flex;
+  gap: 4px;
+  min-width: 100%;
+  width: max-content;
+}
+
+.tab-pill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-bottom: none;
+  transition: transform 0.35s var(--ease), width 0.35s var(--ease);
+  will-change: transform, width;
+  z-index: 0;
+}
+
+.tab {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 12px 18px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color 0.2s var(--ease);
+}
+
+.tab:hover { color: var(--text); }
+
+.tab[aria-selected="true"] {
+  color: var(--text);
+}
+
+.tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+}

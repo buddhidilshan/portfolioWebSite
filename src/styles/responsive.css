@@ -1,0 +1,35 @@
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 720px) {
+  .hero-facts { grid-template-columns: 1fr 1fr; }
+  .skill-clusters { grid-template-columns: 1fr; }
+  .project-grid { grid-template-columns: 1fr; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .timeline-item { grid-template-columns: 1fr; gap: 6px; }
+}
+
+@media (max-width: 480px) {
+  .hero-facts { grid-template-columns: 1fr; }
+  .card { flex-direction: column; }
+  .card-logo { width: 40px; height: 40px; }
+}
+
+@media (max-width: 360px) {
+  main { padding-left: 16px; padding-right: 16px; }
+  .brand { padding-left: 16px; padding-right: 16px; }
+  .tabnav { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 34px; }
+}
+
+/* ============================================================
+   Reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

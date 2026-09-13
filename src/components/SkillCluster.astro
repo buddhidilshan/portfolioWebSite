@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  items: string[];
+}
+
+const { title, items } = Astro.props;
+---
+
+<div class="skill-cluster">
+  <h3 class="cluster-title">{title}</h3>
+  <ul class="chip-list">
+    {items.map((item) => <li class="chip" set:html={item} />)}
+  </ul>
+</div>

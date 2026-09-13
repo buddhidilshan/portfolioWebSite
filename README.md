@@ -1,68 +1,77 @@
 # Buddhi Dilshan — Personal Portfolio
 
-A single-page personal portfolio site built with plain HTML, CSS and
-JavaScript — no framework, no build step, no dependencies.
+A single-page personal portfolio built with [Astro](https://astro.build).
+Static output, no UI framework, plain CSS.
 
-## Running it locally
-
-Open `index.html` directly in a browser. That's it — nothing to install
-or compile.
-
-If you'd rather serve it over http (closer to how it behaves when
-deployed), either use the VS Code **Live Server** extension, or run:
+## Running it
 
 ```bash
-npx serve .
+npm install      # once
+npm run dev      # http://localhost:4321
+```
+
+Other commands:
+
+```bash
+npm run build    # static site into dist/
+npm run preview  # serve the built dist/ locally
 ```
 
 ## Structure
 
 ```
-index.html         Page markup and content (all sections live here)
-css/styles.css     All styling, including responsive rules and the pill nav
-js/main.js         Tab switching, hash routing, keyboard nav, contact form
-assets/            Images, icons, and any other static files
+src/
+  pages/index.astro       the screen — assembles the six panels
+  layouts/Base.astro      <head>, header and footer; exists once
+  components/             one file per repeated UI piece
+  data/                   all site content as JSON
+  styles/                 theme tokens + one stylesheet per area
+  scripts/tabs.js         tab switching, hash routing, keyboard nav
+public/assets/            images, icons, CV — served as-is
 ```
 
-## How the navigation works
+## Changing content
 
-- Each tab (`Home`, `Qualifications`, `Experience`, `Skills`, `Projects`,
-  `Contact`) is a `role="tab"` button; each section is a `role="tabpanel"`.
-- Selecting a tab updates `window.location.hash` (e.g. `#work`), so every
-  section is linkable and the browser's back/forward buttons work.
-- An accent "pill" behind the tabs slides to the active tab using a CSS
-  transform transition, positioned in JavaScript from the tab's bounding box.
-- All of this snaps instantly instead of animating when the visitor has
-  `prefers-reduced-motion` set.
+**Edit the JSON in `src/data/`, not the markup.**
 
-## What still needs your content
+| File                  | Controls                                        |
+| --------------------- | ----------------------------------------------- |
+| `site.json`           | name, bio, hero facts, tab labels, contact links |
+| `qualifications.json` | education entries and certifications             |
+| `experience.json`     | jobs — each entry renders one card               |
+| `skills.json`         | skill clusters and their chips                   |
+| `projects.json`       | project cards                                    |
 
-Search `index.html` for `TODO Buddhi` — there are four spots:
+Adding a job means appending an object to `experience.json`. The markup
+loops over the data, so nothing else changes.
 
-1. **Qualifications** — degrees, dates, institutions, real certifications.
-2. **Experience** — job titles, employer name, dates, bullets.
-3. **Projects** — these describe internal work in deliberately generic
-   terms. Confirm what you're allowed to publish before it goes live.
-4. **Contact** — the email address and profile links you want public.
+## Changing the look
 
-## Design tokens
+`src/styles/tokens.css` holds the palette, fonts and spacing as CSS custom
+properties — change the theme in one place. Everything else in
+`src/styles/` is scoped to one area of the page (`tabnav.css`, `home.css`,
+`experience.css`, and so on) and is pulled together by `index.css`, which
+is imported once in `Base.astro`.
 
-Colors, fonts and spacing are CSS custom properties at the top of
-`css/styles.css` (`:root`), so the palette and type scale change in one
-place.
+`responsive.css` stays last in that import list, since it overrides
+earlier rules.
 
-## Deploying (free)
+## Still needs your content
 
-Any static host works. Two good options:
+Search `src/data/` for `20XX` and `you@example.com`:
 
-**Vercel** — push this folder to a GitHub repo, then import it at
-vercel.com. Framework preset: **Other**. Build command: leave empty.
-Output directory: `.` (the repo root). You get
-`your-project.vercel.app` free, with automatic redeploys on every push.
+1. `qualifications.json` — real degrees, dates, institutions, certifications
+2. `experience.json` — job titles, employer, dates
+3. `site.json` — the email address and profile links you want public
+4. `projects.json` — confirm what's OK to publish about work projects
 
-**GitHub Pages** — push to GitHub, then Settings → Pages → deploy from
-branch `main`, folder `/ (root)`. You get
-`your-username.github.io/repo-name` free.
+## Deployment
 
-Neither needs a paid plan, and a custom domain can be added later to
-either one without changing any code.
+Pushes to `main` deploy automatically to Vercel.
+
+In Vercel, set **Settings → General → Framework Preset** to **Astro**.
+Build command `npm run build` and output directory `dist` are then filled
+in automatically.
+
+Pushing any other branch gives a preview URL for that branch without
+touching the live site.

@@ -1,0 +1,62 @@
+/* ============================================================
+   Contact
+   ============================================================ */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+input, textarea {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  resize: vertical;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--accent);
+}
+
+.contact-form .btn { align-self: flex-start; margin-top: 4px; }
+
+.form-status {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  min-height: 1.4em;
+  margin: 0;
+}
+
+.direct-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.direct-list a {
+  font-weight: 500;
+}

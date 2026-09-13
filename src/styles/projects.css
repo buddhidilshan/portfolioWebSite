@@ -1,0 +1,56 @@
+/* ============================================================
+   Projects
+   ============================================================ */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  padding: 24px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card h3 { font-size: 20px; }
+
+.project-card p {
+  color: var(--muted);
+  flex: 1;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 1.2em;
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  border: 1px solid var(--hairline);
+  color: var(--muted);
+}
+
+.project-links {
+  display: flex;
+  gap: 16px;
+}
+
+.project-link {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

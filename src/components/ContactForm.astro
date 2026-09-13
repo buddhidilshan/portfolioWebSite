@@ -1,0 +1,33 @@
+---
+import site from "../data/site.json";
+---
+
+<div class="contact-layout">
+  <form class="contact-form" id="contact-form" novalidate>
+    <div class="field">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" autocomplete="name" required />
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" autocomplete="email" required />
+    </div>
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send message</button>
+    <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+  </form>
+
+  <div class="contact-direct">
+    <h3 class="cluster-title">Direct</h3>
+    <ul class="direct-list">
+      {site.contact.links.map((link) => (
+        <li>
+          <a href={link.href}>{link.label}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+---
+// One tab panel. `active` decides which panel is visible on first paint;
+// tabs.js takes over from there.
+interface Props {
+  id: string;
+  active?: boolean;
+}
+
+const { id, active = false } = Astro.props;
+---
+
+<section
+  class="panel"
+  id={`panel-${id}`}
+  role="tabpanel"
+  aria-labelledby={`tab-${id}`}
+  tabindex="0"
+  hidden={!active}
+>
+  <slot />
+</section>

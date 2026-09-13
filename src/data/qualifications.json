@@ -1,0 +1,22 @@
+{
+  "lede": "Education and certifications, roughly in the order they happened.",
+  "education": [
+    {
+      "dates": "20XX — 20XX",
+      "title": "Your degree goes here",
+      "org": "Your university",
+      "note": "One line on what you specialised in or what you want a reader to notice."
+    },
+    {
+      "dates": "20XX — 20XX",
+      "title": "Earlier qualification",
+      "org": "Institution",
+      "note": "Delete this entry if you only want to list one."
+    }
+  ],
+  "certifications": [
+    { "name": "Microsoft Certified: Power Platform Developer Associate (PL-400)", "issuer": "Microsoft", "year": "20XX" },
+    { "name": "Microsoft Certified: Azure AI Engineer Associate (AI-102)", "issuer": "Microsoft", "year": "20XX" },
+    { "name": "Alteryx Designer Core", "issuer": "Alteryx", "year": "20XX" }
+  ]
+}

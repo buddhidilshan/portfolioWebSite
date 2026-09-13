@@ -1,0 +1,29 @@
+{
+  "lede": "A few things I've built recently — described at a level that keeps client detail out of it.",
+  "items": [
+    {
+      "name": "Valuation Review Agent",
+      "summary": "An AI pipeline that reads large scanned valuation reports and extracts the fields an auditor actually needs, chunking and re-assembling documents that are far too long for a single pass.",
+      "tags": ["Azure OpenAI", "Document Intelligence", "Python"],
+      "links": [{ "label": "Case study", "href": "#" }]
+    },
+    {
+      "name": "Financial Reporting Checklist Agent",
+      "summary": "A guided compliance checklist that branches across for-profit, not-for-profit and special-purpose reporting frameworks, so reviewers only answer the questions that apply to them.",
+      "tags": ["Copilot Studio", "Dataverse", "Power Apps"],
+      "links": [{ "label": "Case study", "href": "#" }]
+    },
+    {
+      "name": "Letter Generation Pipeline",
+      "summary": "An Alteryx and Python workflow that turns a data extract into hundreds of correctly populated Word letters, replacing a mail-merge process that used to take days.",
+      "tags": ["Alteryx", "Python", "Word automation"],
+      "links": [{ "label": "Case study", "href": "#" }]
+    },
+    {
+      "name": "This Portfolio",
+      "summary": "A statically built single-page site with tabbed navigation, hash routing and an animated pill indicator — Astro, plain CSS, no UI framework.",
+      "tags": ["Astro", "CSS", "TypeScript"],
+      "links": [{ "label": "Source", "href": "#" }]
+    }
+  ]
+}

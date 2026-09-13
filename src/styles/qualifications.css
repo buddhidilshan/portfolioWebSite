@@ -1,0 +1,48 @@
+/* ============================================================
+   Qualifications — timeline & certs
+   ============================================================ */
+.timeline-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.timeline-item:last-child { border-bottom: 1px solid var(--hairline); }
+
+.timeline-dates {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.timeline-org {
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 0.5em;
+}
+
+.cert-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.cert {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 20px;
+  padding: 16px 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.cert:last-child { border-bottom: 1px solid var(--hairline); }
+
+.cert-name { font-weight: 600; }
+
+.cert-issuer {
+  font-size: 13px;
+  color: var(--muted);
+}
