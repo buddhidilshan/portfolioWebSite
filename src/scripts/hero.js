@@ -278,7 +278,7 @@ export function initHero(root) {
     const inquiryText = () => {
       const data = new FormData(contactForm);
       const picked = selected.size ? Array.from(selected).join(", ") : "General enquiry";
-      return `ENQUIRY FOR BUDDHI DILSHAN\n\nName: ${String(data.get("name")).trim()}\n` +
+      return `ENQUIRY FOR BEROXV\n\nName: ${String(data.get("name")).trim()}\n` +
         `Email: ${String(data.get("email")).trim()}\nInterested in: ${picked}\n\n` +
         `${String(data.get("message")).trim()}\n`;
     };
@@ -320,14 +320,18 @@ export function initHero(root) {
     mobileNav.dataset.open = open ? "true" : "false";
     mobileNav.setAttribute("aria-hidden", open ? "false" : "true");
     mobileNav.inert = !open;
+    const backdrop = root.querySelector(".menu-backdrop");
+    if (backdrop) backdrop.hidden = !open;
     root.querySelector(".hero-main").inert = open;
     if (stage) stage.inert = open;
-    document.querySelectorAll(".selected-work, .blog-section, .portfolio-footer").forEach(el => { el.inert = open; });
+    document.querySelectorAll(".service-studio, .selected-work, .blog-section, .portfolio-footer").forEach(el => { el.inert = open; });
     // A menu choice can open a dialog, which owns the scroll lock from then on.
     if (open) mobileNav.querySelector("a, button")?.focus();
     else if (!document.querySelector(".hero-dialog[open]")) document.body.style.overflow = "";
     if (open) document.body.style.overflow = "hidden";
   }
+
+  root.querySelector(".menu-backdrop")?.addEventListener("click", () => { setMenu(false); toggle?.focus(); });
 
   toggle?.addEventListener("click", () => {
     setMenu(toggle.getAttribute("aria-expanded") !== "true");

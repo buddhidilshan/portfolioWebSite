@@ -1,5 +1,6 @@
 ---
-// The page shell: <head>, the sticky header, and the footer. Every screen in
+import SiteIcons from "../components/SiteIcons.astro";
+// The page shell: document head, sticky header, and footer. Every screen in
 // src/pages renders inside this, so the header and footer exist exactly once.
 import site from "../data/site.json";
 import TabNav from "../components/TabNav.astro";
@@ -17,6 +18,7 @@ const { title = site.title, description = site.description } = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
+    <SiteIcons />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>

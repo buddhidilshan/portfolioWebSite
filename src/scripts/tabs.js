@@ -175,7 +175,7 @@
         return;
       }
       const data = new FormData(form);
-      const message = "ENQUIRY FOR BUDDHI DILSHAN\n\nName: " + data.get("name") + "\nEmail: " + data.get("email") + "\n\n" + data.get("message");
+      const message = "ENQUIRY FOR BEROXV\n\nName: " + data.get("name") + "\nEmail: " + data.get("email") + "\n\n" + data.get("message");
       try {
         await navigator.clipboard.writeText(message);
         status.textContent = "Enquiry copied. Paste it into an email to send it. Nothing has been sent from this website.";

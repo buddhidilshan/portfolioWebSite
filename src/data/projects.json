@@ -9,7 +9,11 @@
       "icon": "document",
       "name": "Valuation Review Agent",
       "summary": "An AI pipeline that reads large scanned valuation reports and extracts the fields an auditor actually needs, chunking and re-assembling documents that are far too long for a single pass.",
-      "tags": ["Azure OpenAI", "Document Intelligence", "Python"]
+      "tags": [
+        "Azure OpenAI",
+        "Document Intelligence",
+        "Python"
+      ]
     },
     {
       "id": "reporting-checklist",
@@ -18,7 +22,11 @@
       "icon": "checklist",
       "name": "Financial Reporting Checklist Agent",
       "summary": "A guided compliance checklist that branches across for-profit, not-for-profit and special-purpose reporting frameworks, so reviewers only answer the questions that apply to them.",
-      "tags": ["Copilot Studio", "Dataverse", "Power Apps"]
+      "tags": [
+        "Copilot Studio",
+        "Dataverse",
+        "Power Apps"
+      ]
     },
     {
       "id": "letter-generation",
@@ -27,7 +35,11 @@
       "icon": "workflow",
       "name": "Letter Generation Pipeline",
       "summary": "An Alteryx and Python workflow that turns a data extract into hundreds of correctly populated Word letters, replacing a mail-merge process that used to take days.",
-      "tags": ["Alteryx", "Python", "Word automation"]
+      "tags": [
+        "Alteryx",
+        "Python",
+        "Word automation"
+      ]
     },
     {
       "id": "this-portfolio",
@@ -35,8 +47,12 @@
       "kind": "INTERACTIVE EXPERIENCES",
       "icon": "browser",
       "name": "This Portfolio",
-      "summary": "A single-page experience with a cursor-following portrait, animated service selection and a little personality. Built with Astro and plain CSS — no UI framework.",
-      "tags": ["Astro", "WebGL", "TypeScript"]
+      "summary": "A personal portfolio with a futuristic portrait, frosted glass details and responsive layouts. Built with Astro and plain CSS, with interactive service selection and a field-notes journal.",
+      "tags": [
+        "Astro",
+        "CSS",
+        "JavaScript"
+      ]
     }
   ]
 }

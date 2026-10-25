@@ -4,13 +4,13 @@
 :root {
   color-scheme: light;
 
-  --bg: #E9EDEF;
-  --surface: #F4F6F7;
-  --text: #16233A;
-  --muted: #5B6C80;
+  --bg: #f0f0f3;
+  --surface: #fafafb;
+  --text: #232128;
+  --muted: #68646e;
   --hairline: #C7D0D7;
-  --accent: #D8570B;
-  --accent-ink: #FFF6F0;
+  --accent: #6b0070;
+  --accent-ink: #ffffff;
 
   --font-head: "Bricolage Grotesque", system-ui, sans-serif;
   --font-body: "Newsreader", Georgia, serif;
