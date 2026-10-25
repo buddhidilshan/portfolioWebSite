@@ -16,14 +16,16 @@ import site from "../data/site.json";
       <label for="message">Message</label>
       <textarea id="message" name="message" rows="5" required></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Send message</button>
+    <button type="submit" class="btn btn-primary">Copy enquiry</button>
+    <p>This form prepares your enquiry for copying. It does not send a message.</p>
     <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
   </form>
 
   <div class="contact-direct">
-    <h3 class="cluster-title">Direct</h3>
+    <h3 class="cluster-title">Contact details</h3>
+    {!site.contact.links.some(link => link.href !== "#" && !link.href.includes("example.com")) && <p>Direct contact links will appear here when available.</p>}
     <ul class="direct-list">
-      {site.contact.links.map((link) => (
+      {site.contact.links.filter(link => link.href !== "#" && !link.href.includes("example.com")).map((link) => (
         <li>
           <a href={link.href}>{link.label}</a>
         </li>

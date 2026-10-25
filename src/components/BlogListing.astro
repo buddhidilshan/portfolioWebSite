@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import "../styles/blog.css";
+const { preview = false } = Astro.props;
+const all = (await getCollection("blog", ({ data }) => !data.draft)).sort((a,b) => b.data.date.valueOf() - a.data.date.valueOf() || a.data.title.localeCompare(b.data.title));
+const posts = preview ? all.slice(0,3) : all;
+const categories = ["All", "Power Apps", "Power Automate", "Copilot agents", "Other"];
+---
+<section class="blog-section" id="blog" aria-labelledby="blog-title">
+  <div class="editorial-shell">
+    <div class="section-overline"><span>THE FIELD NOTES</span><span>IDEAS WORTH SHARING</span></div>
+    <div class="blog-intro">
+      <div><h2 id="blog-title">Build. Learn. <em>Share.</em></h2><p>Practical notes on Power Apps, flows, Copilot agents and the work around them.</p></div>
+      {preview && <a class="text-link" href="/blog/">All field notes ↗</a>}
+    </div>
+    {!preview && <div class="blog-controls" hidden>
+      <label class="search-label" for="blog-search">Find a field note<input id="blog-search" type="search" placeholder="Search articles…" autocomplete="off" /></label>
+      <div class="category-filters" role="group" aria-label="Filter articles by topic">
+        {categories.map((category) => <button type="button" data-category={category} aria-pressed={category === "All" ? "true" : "false"}>{category}</button>)}
+      </div>
+      <p class="search-status" role="status" aria-live="polite"></p>
+    </div>}
+    <div class="blog-grid">
+      {posts.map((post, index) => <article class="blog-card" data-blog-card data-category={post.data.category} data-search={`${post.data.title} ${post.data.description} ${post.data.category}`.toLowerCase()}>
+        <div class="blog-art" data-topic={post.data.category} aria-hidden="true"><span class="art-symbol">{post.data.category === "Power Apps" ? "▦" : post.data.category === "Power Automate" ? "↳" : "✳"}</span><span class="art-number">NOTE / {String(index+1).padStart(2,"0")}</span></div>
+        <div class="blog-card-body"><div class="article-meta"><span>{post.data.category}</span><span>{post.data.readingMinutes} min read</span></div>
+          <h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3><p>{post.data.description}</p>
+          <a class="read-note text-link" href={`/blog/${post.id}/`} aria-label={`Read ${post.data.title}`}>Read the note ↗</a>
+        </div>
+      </article>)}
+    </div>
+    <p class="no-results" hidden>No notes match that search. Try another word or choose All.</p>
+    {posts.length === 0 && <p>New field notes are on the way.</p>}
+  </div>
+</section>
+<script>
+  document.querySelectorAll(".blog-section").forEach(section => {
+    const controls = section.querySelector<HTMLElement>(".blog-controls");
+    if (!controls) return;
+    controls.hidden = false;
+    const search = controls.querySelector<HTMLInputElement>("input")!;
+    const buttons = [...controls.querySelectorAll<HTMLButtonElement>("[data-category]")];
+    const cards = [...section.querySelectorAll<HTMLElement>("[data-blog-card]")];
+    let category = "All";
+    const filter = () => {
+      const term = search.value.trim().toLowerCase();
+      let count = 0;
+      cards.forEach(card => {
+        const match = (category === "All" || card.dataset.category === category) && (card.dataset.search || "").includes(term);
+        card.hidden = !match;
+        if (match) count++;
+      });
+      controls.querySelector(".search-status")!.textContent = `${count} ${count === 1 ? "note" : "notes"} found`;
+      (section.querySelector(".no-results") as HTMLElement).hidden = count > 0;
+      buttons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.category === category)));
+    };
+    search.addEventListener("input", filter);
+    buttons.forEach(button => button.addEventListener("click", () => { category = button.dataset.category!; filter(); }));
+    filter();
+  });
+</script>
+
+

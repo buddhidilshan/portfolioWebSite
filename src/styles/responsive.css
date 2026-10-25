@@ -33,3 +33,5 @@
     scroll-behavior: auto !important;
   }
 }
+
+.journal-link { display:inline-flex; padding:8px 20px; min-height:44px; align-items:center; font-family:var(--font-head); font-size:14px; }

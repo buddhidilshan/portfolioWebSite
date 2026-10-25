@@ -85,7 +85,8 @@ export function initHero(root) {
   let demoStart = 0;
   let lastInput = -10000;
   let nodAt = -10000;
-  const disabled = () => paused || reduced.matches;
+  const mobile = window.matchMedia("(max-width: 1023px)");
+  const disabled = () => paused || reduced.matches || mobile.matches;
 
   const springX = createSpring(MOTION);
   const springY = createSpring(MOTION);
@@ -117,8 +118,13 @@ export function initHero(root) {
   const line = root.querySelector(".typewriter-line");
   const caret = root.querySelector(".typewriter-caret");
   const HEADLINE = root.querySelector(".typewriter-measure")?.textContent ?? "";
+  let typingDelay;
+  let typingTimer;
   function typewrite() {
+    window.clearTimeout(typingDelay);
+    window.clearInterval(typingTimer);
     if (!line) return;
+    root.classList.add("typing");
     if (reduced.matches) {
       line.textContent = HEADLINE;
       if (caret) caret.hidden = true;
@@ -127,12 +133,12 @@ export function initHero(root) {
     line.textContent = "";
     if (caret) caret.hidden = false;
     let index = 0;
-    window.setTimeout(() => {
-      const timer = window.setInterval(() => {
+    typingDelay = window.setTimeout(() => {
+      typingTimer = window.setInterval(() => {
         index += 1;
         line.textContent = HEADLINE.slice(0, index);
         if (index >= HEADLINE.length) {
-          window.clearInterval(timer);
+          window.clearInterval(typingTimer);
           if (caret) caret.hidden = true;
         }
       }, 38);
@@ -247,16 +253,20 @@ export function initHero(root) {
       if (outside) dialog.close();
     });
 
-    dialog.addEventListener("close", () => { document.body.style.overflow = ""; });
+    dialog.addEventListener("close", () => {
+      document.body.style.overflow = "";
+      if (dialog.dataset.mobileTrigger === "true") root.querySelector(".nav-toggle")?.focus();
+    });
   });
 
-  root.querySelectorAll("[data-panel]").forEach((trigger) => {
+  document.querySelectorAll("[data-panel]").forEach((trigger) => {
     if (trigger.tagName === "DIALOG") return;
     trigger.addEventListener("click", (event) => {
       const dialog = dialogs.get(trigger.dataset.panel);
       if (!dialog) return;
       event.preventDefault();
       document.body.style.overflow = "hidden";
+      dialog.dataset.mobileTrigger = String(Boolean(trigger.closest(".mobile-nav")));
       dialog.showModal();
     });
   });
@@ -309,6 +319,10 @@ export function initHero(root) {
     toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     mobileNav.dataset.open = open ? "true" : "false";
     mobileNav.setAttribute("aria-hidden", open ? "false" : "true");
+    mobileNav.inert = !open;
+    root.querySelector(".hero-main").inert = open;
+    if (stage) stage.inert = open;
+    document.querySelectorAll(".selected-work, .blog-section, .portfolio-footer").forEach(el => { el.inert = open; });
     // A menu choice can open a dialog, which owns the scroll lock from then on.
     if (open) mobileNav.querySelector("a, button")?.focus();
     else if (!document.querySelector(".hero-dialog[open]")) document.body.style.overflow = "";
@@ -325,6 +339,11 @@ export function initHero(root) {
   });
 
   document.addEventListener("keydown", (event) => {
+    if (event.key === "Tab" && mobileNav?.dataset.open === "true" && !document.querySelector("dialog[open]")) {
+      const items = [toggle, ...mobileNav.querySelectorAll("a, button")];
+      if (event.shiftKey && (document.activeElement === items[0] || !items.includes(document.activeElement))) { event.preventDefault(); items.at(-1).focus(); }
+      else if (!event.shiftKey && document.activeElement === items.at(-1)) { event.preventDefault(); toggle.focus(); }
+    }
     if (event.key === "Escape" && mobileNav?.dataset.open === "true") {
       setMenu(false);
       toggle?.focus();
@@ -338,8 +357,9 @@ export function initHero(root) {
 
   // ---- Selected work: reveal on scroll ---------------------------------
   const reveals = document.querySelectorAll("[data-work-reveal]");
-  if (reveals.length) {
+  if (reveals.length && "IntersectionObserver" in window) {
     reveals.forEach((el) => {
+      el.classList.add("reveal-ready");
       el.style.setProperty("--reveal-delay", `${el.dataset.delay || 0}ms`);
     });
     const io = new IntersectionObserver((entries) => {
@@ -391,6 +411,7 @@ export function initHero(root) {
   });
 
   // ---- Render loop -----------------------------------------------------
+  if (mobile.matches || reduced.matches || !canvas) return;
   const renderer = createPortraitRenderer(canvas, canvas.dataset.src, {
     ...MOTION,
     onReady: () => { canvas.style.opacity = "1"; if (image) image.style.opacity = "0"; },

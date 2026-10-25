@@ -21,7 +21,8 @@
       "bullets": [
         "Replace these bullets with two or three things you actually shipped.",
         "Lead with the outcome, then the technology."
-      ]
+      ],
+      "draft": true
     }
   ]
 }

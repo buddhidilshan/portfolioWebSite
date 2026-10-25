@@ -25,19 +25,19 @@ import projects from "../data/projects.json";
   </Panel>
 
   <Panel id="qualifications">
-    <SectionHeader title="Qualifications" lede={qualifications.lede} />
+    <SectionHeader title="Qualifications" lede="Education and certification details will be added soon." />
 
-    <h3 class="group-title">Education</h3>
-    <Timeline entries={qualifications.education} />
+    {qualifications.education.some(entry => !entry.draft) && <h3 class="group-title">Education</h3>}
+    <Timeline entries={qualifications.education.filter(entry => !entry.draft)} />
 
-    <h3 class="group-title">Certifications</h3>
-    <CertList certs={qualifications.certifications} />
+    {qualifications.certifications.some(entry => !entry.draft) && <h3 class="group-title">Certifications</h3>}
+    <CertList certs={qualifications.certifications.filter(cert => !cert.draft)} />
   </Panel>
 
   <Panel id="work">
     <SectionHeader title="Experience" lede={experience.lede} />
     <ul class="card-list">
-      {experience.roles.map((role) => <ExperienceCard {...role} />)}
+      {experience.roles.filter(role => !role.draft).map((role) => <ExperienceCard {...role} />)}
     </ul>
   </Panel>
 

@@ -1,0 +1,20 @@
+---
+const repo = import.meta.env.PUBLIC_GISCUS_REPO;
+const repoId = import.meta.env.PUBLIC_GISCUS_REPO_ID;
+const category = import.meta.env.PUBLIC_GISCUS_CATEGORY;
+const categoryId = import.meta.env.PUBLIC_GISCUS_CATEGORY_ID;
+const enabled = Boolean(repo && repoId && category && categoryId);
+---
+<section class="comments" aria-labelledby="comments-title">
+  <h2 id="comments-title">Continue the conversation.</h2>
+  {enabled ? <>
+    <p>Questions, ideas or a different approach? Join the discussion with your GitHub account. Please keep client information private.</p>
+    <div class="giscus"></div>
+    <script is:inline src="https://giscus.app/client.js"
+      data-repo={repo} data-repo-id={repoId} data-category={category} data-category-id={categoryId}
+      data-mapping="pathname" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0"
+      data-input-position="top" data-theme="light" data-lang="en" data-loading="lazy" crossorigin="anonymous" async></script>
+    <p class="comment-fallback">If comments do not load, <a href={`https://github.com/${repo}/discussions`}>open the discussions on GitHub</a>.</p>
+  </> : <p>Comments are not open yet. Check back soon to join the conversation.</p>}
+</section>
+

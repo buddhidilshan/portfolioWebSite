@@ -1,0 +1,18 @@
+---
+import projects from "../../data/projects.json";
+import Editorial from "../../layouts/Editorial.astro";
+export function getStaticPaths() { return projects.items.map(project => ({params:{slug:project.id},props:{project}})); }
+const {project} = Astro.props;
+---
+<Editorial title={project.name} description={project.summary}>
+  <article class="article-shell project-detail">
+    <a class="text-link" href="/#projects">← Selected work</a>
+    <header class="article-header"><p class="article-category">{project.kind} / {project.number}</p><h1>{project.name}</h1><p class="article-deck">{project.summary}</p></header>
+    <div class="project-summary-grid">
+      <section><h2>Built with</h2><ul class="detail-tags">{project.tags.map(tag=><li>{tag}</li>)}</ul></section>
+      <section><h2>About this work</h2><p>{project.id === "this-portfolio" ? "Explore the live experience: responsive layouts, interactive service selection, selected projects and a growing collection of field notes." : "This overview describes the work without exposing client documents, data or internal systems."}</p><a class="text-link" href={project.id === "this-portfolio" ? "/" : "/#projects"}>{project.id === "this-portfolio" ? "Explore the portfolio ↗" : "Explore more projects ↗"}</a></section>
+    </div>
+    <section class="project-next"><h2>From manual work to something better.</h2><p>Explore practical notes on designing apps, workflows and AI agents.</p><a class="text-link" href="/blog/">Read the field notes ↗</a></section>
+  </article>
+</Editorial>
+

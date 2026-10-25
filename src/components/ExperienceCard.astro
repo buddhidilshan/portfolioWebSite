@@ -15,7 +15,7 @@ const { logo, title, dates, org, bullets } = Astro.props;
   <div class="card-body">
     <div class="card-heading">
       <h3>{title}</h3>
-      <span class="card-dates">{dates}</span>
+      {!dates.includes("20XX") && <span class="card-dates">{dates}</span>}
     </div>
     <p class="card-org">{org}</p>
     <ul class="card-bullets">

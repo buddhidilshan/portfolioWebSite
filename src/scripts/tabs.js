@@ -15,6 +15,8 @@
     return validTargets.indexOf(hash) !== -1 ? hash : defaultTarget;
   }
 
+  if (!track || !tabs.length) return;
+
   // Show a soft fade on whichever edge of the tab strip has more tabs
   // hidden past it, so a narrow screen signals that the strip scrolls.
   function updateFades() {
@@ -100,6 +102,7 @@
     // Setting the hash pushes a history entry and fires "hashchange",
     // which keeps back/forward navigation in sync automatically.
     window.location.hash = target;
+    activate(target, opts);
   }
 
   // Tab clicks
@@ -165,14 +168,20 @@
   var form = document.getElementById("contact-form");
   var status = document.getElementById("form-status");
   if (form) {
-    form.addEventListener("submit", function (event) {
+    form.addEventListener("submit", async function (event) {
       event.preventDefault();
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
-      status.textContent = "Thanks — your message has been noted. I'll reply soon.";
-      form.reset();
+      const data = new FormData(form);
+      const message = "ENQUIRY FOR BUDDHI DILSHAN\n\nName: " + data.get("name") + "\nEmail: " + data.get("email") + "\n\n" + data.get("message");
+      try {
+        await navigator.clipboard.writeText(message);
+        status.textContent = "Enquiry copied. Paste it into an email to send it. Nothing has been sent from this website.";
+      } catch {
+        status.textContent = "Clipboard access is unavailable. Copy your message manually; nothing has been sent.";
+      }
     });
   }
 })();

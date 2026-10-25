@@ -24,3 +24,7 @@ npm-debug.log*
 
 # Local notes — never commit credentials or recovery codes
 Vercel lost device details/
+
+# Local browser review artifacts
+qa/
+.qa-chrome/
