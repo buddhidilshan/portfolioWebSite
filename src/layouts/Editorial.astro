@@ -1,4 +1,6 @@
 ---
+import Seo from "../components/Seo.astro";
+import site from "../data/site.json";
 import SiteIcons from "../components/SiteIcons.astro";
 import hero from "../data/hero.json";
 import Footer from "../components/Footer.astro";
@@ -12,8 +14,7 @@ const { title, description } = Astro.props;
 <html lang="en">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{title} — Beroxv</title><meta name="description" content={description} />
-  <meta property="og:title" content={title} /><meta property="og:description" content={description} />
+  <Seo title={`${title} | ${site.name} — ${site.author}`} description={description} />
   <meta name="theme-color" content="#f5f5f7" />
   <SiteIcons />
 </head>

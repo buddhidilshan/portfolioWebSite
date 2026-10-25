@@ -1,4 +1,5 @@
 ---
+import Seo from "../components/Seo.astro";
 import SiteIcons from "../components/SiteIcons.astro";
 // The page shell: document head, sticky header, and footer. Every screen in
 // src/pages renders inside this, so the header and footer exist exactly once.
@@ -21,8 +22,7 @@ const { title = site.title, description = site.description } = Astro.props;
     <SiteIcons />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <Seo title={title} description={description} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

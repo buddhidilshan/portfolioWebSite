@@ -1,4 +1,5 @@
 ---
+import Seo from "../components/Seo.astro";
 import SiteIcons from "../components/SiteIcons.astro";
 import Icon from "../components/Icon.astro";
 import hero from "../data/hero.json";
@@ -22,15 +23,10 @@ import WorkspaceSketch from "../components/WorkspaceSketch.astro";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beroxv — Automation & AI</title>
+    <Seo />
     <SiteIcons />
     <meta name="theme-color" content="#f5f5f7" />
-    <meta property="og:title" content="Beroxv — Automation & AI" />
-    <meta property="og:description" content="Projects and field notes on automation, Power Platform and AI agents." />
-    <meta
-      name="description"
-      content="Automation, AI agents and internal tools by Beroxv."
-    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -47,7 +43,7 @@ import WorkspaceSketch from "../components/WorkspaceSketch.astro";
         <header>
           <nav class="hero-nav" aria-label="Primary">
             <a class="hero-wordmark" href="/">
-              <img class="brand-logo" src="/assets/beroxv-brand.png" width="164" height="40" alt="Beroxv" />
+              <img class="brand-logo" src="/assets/beroxv-brand.png" width="164" height="40" alt="Beroxv Tomorrow" />
             </a>
 
             <div class="hero-nav-links">
