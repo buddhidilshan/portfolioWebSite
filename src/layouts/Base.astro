@@ -8,6 +8,7 @@ import site from "../data/site.json";
 import TabNav from "../components/TabNav.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import "../styles/index.css";
+import "../styles/glass.css";
 
 interface Props {
   title?: string;
@@ -39,8 +40,7 @@ const { title = site.title, description = site.description } = Astro.props;
     <div class="page">
       <header class="site-header">
         <a class="brand" href="#home" data-tab-link="home">
-          <span class="brand-mark" aria-hidden="true">{site.initials}</span>
-          <span class="brand-name">{site.name}</span>
+          <img class="portfolio-brand-logo" src="/assets/beroxv-brand.png" width="164" height="40" alt="Beroxv Tomorrow" />
         </a>
 
         <a class="journal-link" href="/">Main site ↗</a>
